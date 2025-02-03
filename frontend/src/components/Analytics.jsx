@@ -31,9 +31,8 @@ ChartJS.register(
 const Analytics = () => {
   const [userData, setUserData] = useState([]);
   const [feedbackData, setFeedbackData] = useState([]);
-  const [rawFeedbacks, setRawFeedbacks] = useState([]); // Store raw feedback data for the table
+  const [rawFeedbacks, setRawFeedbacks] = useState([]); 
   const [loading, setLoading] = useState(true);
-  // const { isLoggedIn } = useContext(AppContext);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   useEffect(() => {
@@ -53,10 +52,10 @@ const Analytics = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        console.log("User Response:", userResponse.data); // Debugging
+        console.log("User Response:", userResponse.data);
 
         if (userResponse.data?.success) {
-          setUserData(userResponse.data.users || []); // Ensure users is an array
+          setUserData(userResponse.data.users || []); 
         } else {
           toast.error("Failed to fetch users.");
         }
@@ -69,7 +68,7 @@ const Analytics = () => {
           }
         );
 
-        console.log("Feedback Response:", feedbackResponse.data); // Debugging
+        console.log("Feedback Response:", feedbackResponse.data); 
 
         if (feedbackResponse.data?.success) {
           const feedbacks = feedbackResponse.data.feedbacks || [];
@@ -104,21 +103,21 @@ const Analytics = () => {
   }, [backendUrl, isLoggedIn]);
 
   // User Data Chart
-  const roles = [...new Set(userData.map((user) => user.role))]; // Extract unique roles
+  const roles = [...new Set(userData.map((user) => user.role))]; 
   const userChartData = {
-    labels: roles, // Dynamic roles
+    labels: roles, 
     datasets: [
       {
         label: "Users by Role",
         data: roles.map((role) => userData.filter((user) => user.role === role).length),
-        backgroundColor: ["#FF6384", "#36A2EB", "#4CAF50", "#FFC107"], // Add more colors if needed
+        backgroundColor: ["#FF6384", "#36A2EB", "#4CAF50", "#FFC107"], 
       },
     ],
   };
 
   // Feedback Data Chart
   const feedbackChartData = {
-    labels: feedbackData.map((item) => item._id || "Unknown"), // Use proper field name
+    labels: feedbackData.map((item) => item._id || "Unknown"), 
     datasets: [
       {
         label: "Feedback Count",

@@ -22,8 +22,8 @@ const Register = () => {
 
   // Simplified Change Handler
   const handleChange = (e) => {
-    const { name, value } = e.target; // Extract name and value from input
-    setFormData((prev) => ({ ...prev, [name]: value })); // Update the corresponding field
+    const { name, value } = e.target; 
+    setFormData((prev) => ({ ...prev, [name]: value })); 
   };
 
   // Handle Submit
@@ -36,8 +36,8 @@ const Register = () => {
     if (formData.password !== formData.confirmPassword)
       {
         setLoading(false)
-      toast.error('Passwords do not match'); // Show an alert or toast message
-      return; // Stop form submission
+      toast.error('Passwords do not match');
+      return; 
     }
     try {
       axios.defaults.withCredentials = true;
@@ -67,7 +67,7 @@ const Register = () => {
     }
   };
   
-  // here i return the form and above lines are for checking password is match or not
+  
   return (
     <div className="flex items-center justify-center min-h-screen px-2 bg-gradient-to-br from-blue-200 to-purple-400 relative">
   <ToastContainer />

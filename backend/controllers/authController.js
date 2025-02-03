@@ -20,15 +20,6 @@ export const register = async (req , res) =>{
         return res.status(400).json({ success: false, message: "Password must be at least 6 characters long" });
     }
 
-    // if (role === 'admin' && !req.user?.isSuperAdmin){
-    //     return res.status(403).json({success: false , message: "Only Super Admin can add Admins"});
-    // }
-
-    // if (role === 'superadmin') {
-    //     return res.status(403).json({ success: false, message: "You cannot register as superadmin." });
-    // }
-    
-    
     try {
         const existingUser = await userModel.findOne({email});
         
@@ -79,7 +70,7 @@ export const register = async (req , res) =>{
 }
 
 
-
+// Login Functionality
 export const login = async (req , res) =>{
     const {email , password} = req.body;
 
@@ -133,7 +124,7 @@ export const login = async (req , res) =>{
 }
 
 
-
+// Logging Out users and admins
 export const logout = async (req , res) =>{
     try {
         res.clearCookie('token',{
@@ -272,8 +263,6 @@ export const sendResetOtp = async (req , res) =>{
             from : process.env.SENDER_EMAIL,
             to : user.email,
             subject : "Password Reset OTP",
-            // text : `Your OTP for Resetting your Password is ${otp},
-            // this OTP will expire in 5 minutes`,
             html: PASSWORD_RESET_TEMPLATE.replace("{{otp}}",otp).replace("{{email}}",user.email)
         }
         await transporter.sendMail(mailOption);
@@ -285,8 +274,7 @@ export const sendResetOtp = async (req , res) =>{
     }
 }
 
-//  Reset your Password
-
+//  Reset Password
 export const resetPassword = async (req , res) =>{
     const {email , otp , newPassword} = req.body;
     
@@ -325,10 +313,7 @@ export const resetPassword = async (req , res) =>{
     }
 }
 
-// by deepseek
-
-// Add a New User (Admin Only)
-// ✅ Add a New User (Admin & Superadmin Only)
+//  Add a New User 
 export const addUser = async (req, res) => {
     const { name, email, password } = req.body;
   
@@ -356,13 +341,13 @@ export const addUser = async (req, res) => {
     }
   };
   
-  // ✅ Update a User (Admin & Superadmin Only)
+    //   Update a User 
   export const updateUser = async (req, res) => {
     const { userId } = req.params;
     const { name, email, password } = req.body;
     
-    console.log("Received userId:", userId);  // Debugging
-    console.log("Received body:", req.body);  // Debugging
+    console.log("Received userId:", userId);  
+    console.log("Received body:", req.body);  
 
     try {
       if (req.user?.role !== 'admin' && req.user?.role !== 'superadmin') {
@@ -386,13 +371,13 @@ export const addUser = async (req, res) => {
       await user.save();
       res.status(200).json({ success: true, message: "User updated successfully", user });
     } catch (error) {
-      console.error("Update User Error:", error);  // Error Log
+      console.error("Update User Error:", error);  
       res.status(500).json({ success: false, message: error.message });
     }
 };
 
   
-  // ✅ Delete a User (Admin & Superadmin Only)
+  //  Delete a User 
   export const deleteUser = async (req, res) => {
     const { userId } = req.params;
   

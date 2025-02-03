@@ -9,7 +9,7 @@ const FeedbackTable = () => {
 
   useEffect(() => {
     const fetchFeedbacks = async () => {
-      const token = localStorage.getItem("token"); // Ensure token is stored
+      const token = localStorage.getItem("token"); 
       try {
         const response = await axios.get(`${backendUrl}/api/admin/view-feedback`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -54,7 +54,7 @@ const FeedbackTable = () => {
             <tbody>
               {feedbacks.map((feedback) => (
                 <tr key={feedback._id} className="text-center">
-                  {/* ✅ Fixing userId issue by using userId.name & userId.email */}
+                  
                   <td className="border border-gray-300 px-4 py-2">
                     {feedback.userId?.name || "Unknown"}
                   </td>

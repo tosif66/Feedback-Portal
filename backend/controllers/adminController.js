@@ -41,7 +41,7 @@ export const superAdminDashboard = (req, res) => {
 
 export const manageUsers = async (req, res) => {
   try {
-    const users = await userModel.find({ role: 'user' }).select('-password'); // Exclude sensitive fields
+    const users = await userModel.find({ role: 'user' }).select('-password'); 
     res.status(200).json({ success: true, users });
   } catch (error) {
     console.error("Error in manageUsers:", error.message); // Debug
@@ -161,17 +161,17 @@ export const updateAdmin = async (req, res) => {
 // View All Feedbacks
 export const viewFeedback = async (req, res) => {
   try {
-    const { viewType } = req.query; // 'list' or 'cards'
+    const { viewType } = req.query; 
 
     if (viewType === 'cards') {
-      // Aggregated feedback count by category (cards view)
+      
       const feedbackCountByCategory = await feedBackModel.aggregate([
         { $group: { _id: "$category", count: { $sum: 1 } } }
       ]);
       return res.status(200).json({ success: true, feedbackCountByCategory });
     }
 
-    // Default: Fetch all feedback data (detailed list view)
+    
     const feedbacks = await feedBackModel.find().populate('userId', 'name email');
     return res.status(200).json({ success: true, feedbacks });
   } catch (error) {

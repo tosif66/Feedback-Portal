@@ -9,31 +9,31 @@
 }
 
 input:-webkit-autofill {
-  background-color: #1E293B !important; /* Matches the desired background */
-  -webkit-text-fill-color: #E2E8F0 !important; /* Matches the desired text color */
-  box-shadow: 0 0 0px 1000px #1E293B inset !important; /* Forces the background */
+  background-color: #1E293B !important; 
+  -webkit-text-fill-color: #E2E8F0 !important; 
+  box-shadow: 0 0 0px 1000px #1E293B inset !important; 
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* General Input Styles */
+
 input {
-  background-color: transparent; /* Keep the background transparent */
-  color: black; /* Set text color to black */
+  background-color: transparent; 
+  color: black; 
   outline: none;
-  border: 1px solid #D1D5DB; /* Set border color to gray-300 */
+  border: 1px solid #D1D5DB; 
 }
 
 img {
-  display: block; /* Ensure it's displayed */
-  visibility: visible; /* Make sure it's visible */
+  display: block;
+  visibility: visible; 
 }
 
-/* Remove default outline for buttons and inputs */
+
 button, input {
   outline: none;
 }
 
-/* Smooth transitions for focus effects */
+
 input,
 button {
   transition: all 0.3s ease;

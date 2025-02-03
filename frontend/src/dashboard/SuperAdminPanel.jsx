@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import WaveBackground from '../components/WaveBackground';
 import Sidebar from '../components/Sidebar';
-import MainDash from './MainDash'; // Import your default component
-// Import the AdminTable component
+import MainDash from './MainDash'; 
+
 
 const SuperAdminPanel = () => {
   // Default to MainDash as the active component
