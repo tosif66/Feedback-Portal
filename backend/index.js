@@ -16,7 +16,7 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 
-const allowOrigins = ['http://localhost:5173']
+const allowOrigins = ['https://feedback-portal-1-69kw.onrender.com']
 
 // using express.json to parse the request body
 app.use(express.json());
