@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: "Outfit", sans-serif;
+}
+
+input:-webkit-autofill {
+  background-color: #1E293B !important; /* Matches the desired background */
+  -webkit-text-fill-color: #E2E8F0 !important; /* Matches the desired text color */
+  box-shadow: 0 0 0px 1000px #1E293B inset !important; /* Forces the background */
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* General Input Styles */
+input {
+  background-color: transparent; /* Keep the background transparent */
+  color: black; /* Set text color to black */
+  outline: none;
+  border: 1px solid #D1D5DB; /* Set border color to gray-300 */
+}
+
+img {
+  display: block; /* Ensure it's displayed */
+  visibility: visible; /* Make sure it's visible */
+}
+
+/* Remove default outline for buttons and inputs */
+button, input {
+  outline: none;
+}
+
+/* Smooth transitions for focus effects */
+input,
+button {
+  transition: all 0.3s ease;
+}
