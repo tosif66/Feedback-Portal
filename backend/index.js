@@ -7,9 +7,6 @@ import connectDB from "./config/mongodb.js";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
-import path from 'path';
-
-const __dirname = path.resolve();
 
 // creating instance of express in app
 const app = express();
@@ -34,11 +31,6 @@ app.get('/',(req,res)=> res.send('Api is working'));
 app.use('/api/auth', authRouter)
 app.use('/api/user', userRouter)
 app.use('/api/admin',adminRouter)
-
-app.use(express.static(path.join(__dirname, '/frontend/dist')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend","dist","index.html"))
-})
 
 // starting the server on the port
 app.listen(port, () => console.log(`Server is running on port ${port}`));
