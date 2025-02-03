@@ -16,11 +16,8 @@ import UserFeedback from "./pages/UserFeedback";
 
 const App = () => (
   <>
-    {/* Toast notifications container */}
     <ToastContainer />
-    
-
-    {/* App Routes */}
+  
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />

@@ -11,29 +11,27 @@ const EmailVerify = () => {
 
   const { backendUrl, isLoggedIn, userData, getUserData, setIsLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
-  const inputRefs = React.useRef([]); // For OTP inputs
+  const inputRefs = React.useRef([]); 
 
-  /**
-   * Handle OTP input navigation.
-   */
+  // handle input for OTP
   const handleInput = (e, index) => {
     if (e.target.value.length > 0 && index < inputRefs.current.length - 1) {
       inputRefs.current[index + 1].focus();
     }
   };
 
-  /**
-   * Handle backspace navigation for OTP inputs.
-   */
+  
+    // Handle backspace navigation for OTP inputs.
+  
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && e.target.value === "" && index > 0) {
       inputRefs.current[index - 1].focus();
     }
   };
 
-  /**
-   * Handle OTP paste functionality.
-   */
+  
+    // Handle OTP paste functionality.
+   
   const handlePaste = (e) => {
     const paste = e.clipboardData.getData("text").slice(0, 6);
     const pasteArray = paste.split("");
@@ -44,9 +42,9 @@ const EmailVerify = () => {
     });
   };
 
-  /**
-   * Submit OTP for email verification.
-   */
+  
+    // Submit OTP for email verification.
+   
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -69,8 +67,8 @@ const EmailVerify = () => {
 
       if (data.success) {
         toast.success(data.message);
-        getUserData(); // Refresh user data post-verification
-        navigate("/"); // Redirect to home
+        getUserData(); 
+        navigate("/"); 
       } else {
         toast.error(data.message);
       }
@@ -80,9 +78,9 @@ const EmailVerify = () => {
     }
   };
 
-  /**
-   * Redirect user if they are not logged in or already verified.
-   */
+  
+    // Redirect user if they are not logged in or already verified.
+   
   useEffect(() => {
     if (!isLoggedIn) {
       console.log("login is not working",isLoggedIn)
@@ -94,13 +92,12 @@ const EmailVerify = () => {
     }
   }, [isLoggedIn, userData, navigate]);
 
-  /**
-   * Reset `isLoggedin` when navigating to `email-verify` route.
-   */
+  
+    // Reset `isLoggedin` when navigating to `email-verify` route.
+   
   useEffect(() => {
     const handleRouteChange = () => {
       if (window.location.pathname === "/email-verify") {
-        // setIsLoggedIn(false);
         navigate("/email-verify");
       }
     };

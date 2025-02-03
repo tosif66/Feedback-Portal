@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import * as XLSX from "xlsx"; // For Excel export
-import jsPDF from "jspdf"; // For PDF export
-import "jspdf-autotable"; // For PDF table formatting
+import * as XLSX from "xlsx"; 
+import jsPDF from "jspdf"; 
+import "jspdf-autotable";
 
 const UserFeedback = () => {
-  const [feedbacks, setFeedbacks] = useState([]); // State to store feedbacks
-  const [loading, setLoading] = useState(true); // State to handle loading
-  const backendUrl = import.meta.env.VITE_BACKEND_URL; // Backend URL from environment variables
+  const [feedbacks, setFeedbacks] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL; 
 
   // Fetch user feedbacks from the backend
   useEffect(() => {
     const fetchFeedbacks = async () => {
-      const token = localStorage.getItem("token"); // Get token from localStorage
+      const token = localStorage.getItem("token"); 
       try {
         const response = await axios.get(`${backendUrl}/api/user/user-feedback`, {
-          headers: { Authorization: `Bearer ${token}` }, // Attach token to headers
+          headers: { Authorization: `Bearer ${token}` }, 
         });
 
         if (response.data?.success) {
-          setFeedbacks(response.data.feedbacks || []); // Set feedbacks in state
+          setFeedbacks(response.data.feedbacks || []);
         } else {
           toast.error("Failed to fetch feedbacks.");
         }
       } catch (error) {
         toast.error(error.response?.data?.message || "Error fetching feedbacks");
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     };
 
     fetchFeedbacks();
   }, [backendUrl]);
 
-  // Export feedbacks as Excel
+  // Exporting feedbacks as Excel
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(feedbacks);
     const workbook = XLSX.utils.book_new();
@@ -42,7 +42,7 @@ const UserFeedback = () => {
     XLSX.writeFile(workbook, "my-feedbacks.xlsx");
   };
 
-  // Export feedbacks as PDF
+  // Exporting feedbacks as PDF
   const exportToPDF = () => {
     const doc = new jsPDF();
     doc.text("My Feedback History", 10, 10);
@@ -58,7 +58,7 @@ const UserFeedback = () => {
     doc.save("my-feedbacks.pdf");
   };
 
-  // Loading state
+  
   if (loading) {
     return <p>Loading your feedbacks...</p>;
   }

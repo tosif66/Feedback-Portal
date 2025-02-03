@@ -7,7 +7,7 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState(null); // Initialize as null
+  const [userData, setUserData] = useState(null); 
   const [isRegister, setIsRegister] = useState(false);
 
   const getUserData = async () => {

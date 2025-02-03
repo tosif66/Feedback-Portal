@@ -7,7 +7,7 @@ const UserTable = () => {
   const [users, setUsers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newUser, setNewUser] = useState({ name: "", email: "", role: "user", password: "" });
-  const [editingUser, setEditingUser] = useState(null); // State to track the user being edited
+  const [editingUser, setEditingUser] = useState(null); 
   const { backendUrl } = useContext(AppContext);
 
   useEffect(() => {
@@ -54,9 +54,9 @@ const UserTable = () => {
 
       if (data.success) {
         toast.success("User added successfully!");
-        setUsers([...users, data.user]); // Update users list
+        setUsers([...users, data.user]); 
         setIsModalOpen(false);
-        setNewUser({ name: "", email: "", role: "user", password: "" }); // Reset form
+        setNewUser({ name: "", email: "", role: "user", password: "" });
       } else {
         toast.error(data.message || "Failed to add user.");
       }
@@ -84,10 +84,10 @@ const UserTable = () => {
 
       if (data.success) {
         toast.success("User updated successfully!");
-        setUsers(users.map((user) => (user._id === userId ? data.user : user))); // Update users list
+        setUsers(users.map((user) => (user._id === userId ? data.user : user))); 
         setIsModalOpen(false);
-        setEditingUser(null); // Reset editing user
-        setNewUser({ name: "", email: "", role: "user", password: "" }); // Reset the form
+        setEditingUser(null);
+        setNewUser({ name: "", email: "", role: "user", password: "" });
       } else {
         toast.error(data.message || "Failed to update user.");
       }
@@ -115,7 +115,7 @@ const UserTable = () => {
 
         if (data.success) {
           toast.success("User deleted successfully!");
-          setUsers(users.filter((user) => user._id !== userId)); // Update users list
+          setUsers(users.filter((user) => user._id !== userId)); 
         } else {
           toast.error(data.message || "Failed to delete user.");
         }
@@ -142,7 +142,7 @@ const UserTable = () => {
         {/* Add User Button */}
         <button
           onClick={() => {
-            setEditingUser(null); // Reset editing user
+            setEditingUser(null); 
             setIsModalOpen(true);
           }}
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition"
@@ -188,11 +188,11 @@ const UserTable = () => {
                         setEditingUser(user); // Set the user being edited
                         setNewUser({ 
                           name: user.name, 
-                          email: user.email.trim(), // Fix extra characters issue
+                          email: user.email.trim(), 
                           role: user.role, 
                           password: "" 
-                        }); // Populate the form correctly
-                        setIsModalOpen(true); // Open the modal
+                        }); 
+                        setIsModalOpen(true);
                       }}
                       className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded-lg mr-2 transition"
                     >

@@ -11,13 +11,13 @@ const Card = ({ param }) => {
 
   // Animation variants for Framer Motion
   const variants = {
-    compact: { scale: 1, height: "14rem", width: "16rem" }, // Smaller size for compact state
-    expanded: { scale: 1.05, height: "26rem", width: "20rem" }, // Slightly larger when expanded
+    compact: { scale: 1, height: "14rem", width: "16rem" }, 
+    expanded: { scale: 1.05, height: "26rem", width: "20rem" }, 
   };
 
   return (
     <motion.div
-      className="relative cursor-pointer mx-4 my-4" // Add margin to prevent overlap between cards
+      className="relative cursor-pointer mx-4 my-4" 
       initial="compact"
       animate={expanded ? "expanded" : "compact"}
       variants={variants}
@@ -99,7 +99,7 @@ function ExpandedCard({ param, setExpanded }) {
     series: [
       {
         name: "Example Data",
-        data: [10, 20, 15, 30, 50, 45, 60], // Y-axis points
+        data: [10, 20, 15, 30, 50, 45, 60], 
       },
     ],
   };
@@ -115,7 +115,7 @@ function ExpandedCard({ param, setExpanded }) {
       <X
         className="absolute top-4 right-4 text-xl cursor-pointer"
         onClick={(e) => {
-          e.stopPropagation(); // Prevent parent onClick
+          e.stopPropagation(); 
           setExpanded(false);
         }}
       />

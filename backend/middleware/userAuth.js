@@ -16,7 +16,7 @@ const userAuth = async (req, res, next) => {
     // Verify the token
     const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Check if token contains a valid user ID
+    
     if (!tokenDecoded?.id) {
       return res.status(401).json({
         success: false,
@@ -35,13 +35,6 @@ const userAuth = async (req, res, next) => {
       });
     }
 
-    // Optionally, check if the user is verified
-    // if (!user.isUserVerified) {
-    //   return res.status(403).json({
-    //     success: false,
-    //     message: "Account not verified. Please verify your email.",
-    //   });
-    // }
 
     // Attach user information to the request object
     req.user = { 

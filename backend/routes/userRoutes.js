@@ -4,13 +4,13 @@ import userAuth from '../middleware/userAuth.js';
 import { 
     getUserData, 
     submitFeedback, 
-    getUserFeedbacks  // Add this import
+    getUserFeedbacks  
     } from '../controllers/userController.js';
   
   const userRouter = express.Router();
   
   userRouter.get('/data', getUserData);
-  userRouter.get('/user-feedback', userAuth, getUserFeedbacks);  // New endpoint
+  userRouter.get('/user-feedback', userAuth, getUserFeedbacks);  
   userRouter.post('/submit-feedback', userAuth, submitFeedback);
 
 export default userRouter;

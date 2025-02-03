@@ -17,7 +17,7 @@ const Navbar = () => {
             return toast.error("User ID not found. Please log in again.");
         }
 
-        axios.defaults.withCredentials = true; // Ensures cookies are included
+        axios.defaults.withCredentials = true; 
 
         // Call the backend API
         const { data } = await axios.post(`${backendUrl}/api/auth/send-verify-otp`, {
@@ -25,11 +25,10 @@ const Navbar = () => {
         });
 
         if (data.success) {
-            toast.success(data.message); // Notify the user
-            // Navigate to the verification page only if OTP is sent successfully
+            toast.success(data.message);
             navigate("/email-verify"); 
         } else {
-            toast.error(data.message); // Handle failure to send OTP
+            toast.error(data.message); 
         }
     } catch (error) {
         toast.error(error.response?.data?.message || "Error while sending verification OTP.");
@@ -39,7 +38,7 @@ const Navbar = () => {
   // Function to handle user logout
   const logout = async () => {
     try {
-      axios.defaults.withCredentials = true; // Ensures cookies are included
+      axios.defaults.withCredentials = true;
       const logout = await axios.post(`${backendUrl}/api/auth/logout`);
       const data = logout.data;
 
@@ -48,10 +47,9 @@ const Navbar = () => {
       }
 
       // Clear context or global state
-      
-      
-      localStorage.clear(); // Clear localStorage
-      setIsLoggedIn(false); // Update state
+  
+      localStorage.clear(); 
+      setIsLoggedIn(false); 
 
 
       toast.success(data.message);

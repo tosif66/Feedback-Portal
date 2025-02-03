@@ -60,7 +60,7 @@ const Cards = () => {
   }, [backendUrl, isLoggedIn]);
 
   return (
-    <div className="flex gap-5 p-8"> {/* Increase the gap between cards */}
+    <div className="flex gap-5 p-8"> 
       {feedbacks.map((feedback, index) => (
         <Card key={index} param={feedback} />
       ))}

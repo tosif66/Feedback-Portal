@@ -18,7 +18,7 @@ const Sidebar = ({ setActiveComponent, isSuperAdmin }) => {
 
   const signout = async () => {
     try {
-      axios.defaults.withCredentials = true; // Ensures cookies are included
+      axios.defaults.withCredentials = true; 
       const logout = await axios.post(`${backendUrl}/api/auth/logout`);
       const data = logout.data;
 
@@ -28,7 +28,7 @@ const Sidebar = ({ setActiveComponent, isSuperAdmin }) => {
 
       // Clear context or global state
       setUserData(null);
-      localStorage.clear(); // Clear localStorage
+      localStorage.clear(); 
       setIsLoggedIn(false);
       navigate('/login');
       toast.success(data.message);
@@ -50,8 +50,8 @@ const Sidebar = ({ setActiveComponent, isSuperAdmin }) => {
           <div
             key={index}
             onClick={() => {
-              setSelected(index); // Highlight the selected item
-              setActiveComponent(() => item.component); // Set the active component
+              setSelected(index); 
+              setActiveComponent(() => item.component);
             }}
             className={`cursor-pointer px-4 py-2 rounded-lg transition-all duration-300 
             ${

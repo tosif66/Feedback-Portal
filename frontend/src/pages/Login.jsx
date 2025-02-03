@@ -39,16 +39,16 @@ const Login = () => {
       });
 
       if (data.success) {
-        // Store user details in localStorage (make sure userData is a stringified object)
+        // Store user details in localStorage
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
         localStorage.setItem("role", data.role);
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("userData", data.userData); // Stringify the userData object
+        localStorage.setItem("userData", data.userData); 
 
         // Update app state
         setIsLoggedIn(true);
-        setUserData(data.userData); // Set user data in AppContext
+        setUserData(data.userData);
 
         // Log the stored data for debugging
         console.log("Login Successful! Stored data:", {

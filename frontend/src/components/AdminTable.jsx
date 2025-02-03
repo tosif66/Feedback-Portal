@@ -56,9 +56,9 @@ const AdminTable = () => {
 
       if (data.success) {
         toast.success("Admin added successfully!");
-        setAdmins([...admins, data.user]); // Update admins list
+        setAdmins([...admins, data.user]); 
         setIsModalOpen(false);
-        setNewAdmin({ name: "", email: "", role: "admin", password: "" }); // Reset form
+        setNewAdmin({ name: "", email: "", role: "admin", password: "" }); 
       } else {
         toast.error(data.message || "Failed to add admin.");
       }
@@ -86,10 +86,10 @@ const AdminTable = () => {
 
       if (data.success) {
         toast.success("Admin updated successfully!");
-        setAdmins(admins.map((admin) => (admin._id === adminId ? data.user : admin))); // Update admins list
+        setAdmins(admins.map((admin) => (admin._id === adminId ? data.user : admin)));
         setIsModalOpen(false);
-        setEditingAdmin(null); // Reset editing admin
-        setNewAdmin({ name: "", email: "", role: "admin", password: "" }); // Reset the form
+        setEditingAdmin(null); 
+        setNewAdmin({ name: "", email: "", role: "admin", password: "" });
       } else {
         toast.error(data.message || "Failed to update admin.");
       }
@@ -117,7 +117,7 @@ const AdminTable = () => {
 
         if (data.success) {
           toast.success("Admin deleted successfully!");
-          setAdmins(admins.filter((admin) => admin._id !== adminId)); // Update admins list
+          setAdmins(admins.filter((admin) => admin._id !== adminId)); 
         } else {
           toast.error(data.message || "Failed to delete admin.");
         }
@@ -144,7 +144,7 @@ const AdminTable = () => {
         {/* Add Admin Button */}
         <button
           onClick={() => {
-            setEditingAdmin(null); // Reset editing admin
+            setEditingAdmin(null); 
             setIsModalOpen(true);
           }}
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition"
@@ -183,14 +183,14 @@ const AdminTable = () => {
                   <td className="px-6 py-4 border">
                     <button
                       onClick={() => {
-                        setEditingAdmin(admin); // Set the admin being edited
+                        setEditingAdmin(admin); 
                         setNewAdmin({ 
                           name: admin.name, 
-                          email: admin.email.trim(), // Fix extra characters issue
+                          email: admin.email.trim(), 
                           role: admin.role, 
                           password: "" 
-                        }); // Populate the form correctly
-                        setIsModalOpen(true); // Open the modal
+                        }); 
+                        setIsModalOpen(true); 
                       }}
                       className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded-lg mr-2 transition"
                     >
@@ -277,9 +277,9 @@ const AdminTable = () => {
               <button
                 onClick={() => {
                   if (editingAdmin) {
-                    handleEdit(editingAdmin._id, newAdmin); // Call handleEdit with the admin ID and updated data
+                    handleEdit(editingAdmin._id, newAdmin);
                   } else {
-                    handleAddAdmin(); // Call handleAddAdmin for adding a new admin
+                    handleAddAdmin();
                   }
                 }}
                 className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"

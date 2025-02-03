@@ -6,6 +6,7 @@ import { addUser, deleteUser, updateUser } from '../controllers/authController.j
 
 const adminRouter = express.Router();
 
+// Admin-only routes
 adminRouter.get('/dashboard', adminAuth, adminDashboard);
 adminRouter.get('/view-feedback', adminAuth, viewFeedback);
 adminRouter.get('/manage-users', adminAuth, manageUsers); 

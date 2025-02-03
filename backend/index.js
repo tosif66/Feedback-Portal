@@ -1,4 +1,4 @@
-// importing depencdencies and setting up the server
+// importing dependencies and setting up the server
 import express from "express";
 import cors from "cors";
 import 'dotenv/config';
@@ -18,7 +18,7 @@ connectDB();
 
 const allowOrigins = ['http://localhost:5173']
 
-// if express.json throw error please change it into express()
+// using express.json to parse the request body
 app.use(express.json());
 
 // using cookie parser and cors

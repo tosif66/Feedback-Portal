@@ -23,8 +23,8 @@ export const getUserData = async(req,res) => {
             userData: {
                 name: user.name,
                 email: user.email,
-                isUserVerified: user.isUserVerified, // Ensure this field is included
-                role: user.role, // Include the user's role in the response
+                isUserVerified: user.isUserVerified, 
+                role: user.role, 
             },
         });
 
@@ -42,7 +42,7 @@ export const submitFeedback = async (req, res) => {
     }
 
     try {
-        const userId = req.user.id; // Assuming userAuth middleware adds user info to req.user
+        const userId = req.user.id; 
         const { feedbackText, category, priority } = req.body;
 
         const newFeedback = new feedBackModel({
@@ -82,7 +82,7 @@ export const validateFeedback = ({ feedbackText, category, priority }) => {
 // Add to userController.js
 export const getUserFeedbacks = async (req, res) => {
     try {
-      const userId = req.user.id; // From auth middleware
+      const userId = req.user.id; 
       const feedbacks = await feedBackModel.find({ userId })
         .sort({ createdAt: -1 });
   
