@@ -16,7 +16,8 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 
-const allowOrigins = ['https://feedback-portal-1-69kw.onrender.com','https://feedback-portal-90bo.onrender.com']
+const allowOrigins = ['https://feedback-portal-1-69kw.onrender.com',
+    'https://feedback-portal-90bo.onrender.com','https://timely-cascaron-e38cca.netlify.app']
 
 // using express.json to parse the request body
 app.use(express.json());
