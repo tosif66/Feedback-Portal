@@ -29,58 +29,53 @@ export const AppContextProvider = ({ children }) => {
         params: { userId },
         withCredentials: true,
       });
-      console.log('your data is' ,data)
+
       if (data.success) {
         setIsLoggedIn(true);
         setUserData(data.userData);
-        console.log("User data fetched:", data.userData);
         localStorage.setItem("userData", JSON.stringify(data.userData));
       } else {
         console.warn("Failed to fetch user data:", data.message);
-        setIsLoggedIn(false);
-        setUserData(null);
-        localStorage.removeItem("userData");
+        logout(); // Use centralized logout to clear state
         toast.error(data.message);
       }
     } catch (error) {
       console.error("Error fetching user data:", error.message);
-      setIsLoggedIn(false);
-      setUserData(null);
-      localStorage.removeItem("userData");
-      toast.error("Failed to fetch user data. Please try again.");
+      if (error.response && error.response.status === 401) {
+        logout(); // Logout only on unauthorized error
+      } else {
+        toast.error("Failed to fetch user data. Please try again.");
+      }
     }
   };
 
   const getAuthState = () => {
     const userId = localStorage.getItem("userId");
-    const storedUserData = localStorage.getItem("userData");
     const token = localStorage.getItem("token");
 
-    if (!userId || !storedUserData || !token) {
-      console.warn("User not logged in or missing required data.");
+    if (!userId || !token) {
+      console.warn("User not logged in or missing required credentials.");
       setIsLoggedIn(false);
       setUserData(null);
       return;
     }
 
-    setIsLoggedIn(true);
-    setUserData(JSON.parse(storedUserData));
+    // Check if userData exists in localStorage and set it
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+
+    setIsLoggedIn(true); // User is logged in if token and userId exist
   };
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-
-    if (storedUserData) {
-      setIsLoggedIn(true);
-      setUserData(JSON.parse(storedUserData));
-    } else {
-      getAuthState();
-    }
+    getAuthState(); // Always check auth state on initial load
   }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
-      getUserData();
+      getUserData(); // Fetch latest user data when logged in
     }
   }, [isLoggedIn]);
 

@@ -1,4 +1,3 @@
-// importing dependencies and setting up the server
 import express from "express";
 import cors from "cors";
 import 'dotenv/config';
@@ -8,30 +7,57 @@ import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
 
-// creating instance of express in app
+// Create an instance of express
 const app = express();
 
-// setting up the port to 5000 or the port provided by the environment
-const port = process.env.PORT || 5000;
+// Set the port
+const port = process.env.PORT || 3000;
 
+// Connect to MongoDB
 connectDB();
 
-const allowOrigins = ['https://feedback-portal-1-69kw.onrender.com',
-    'https://feedback-portal-90bo.onrender.com','https://timely-cascaron-e38cca.netlify.app']
+// Define allowed origins for CORS
+const allowOrigins = [
+  'https://feedback-portal-1-69kw.onrender.com',
+  'https://feedback-portal-90bo.onrender.com',
+  'https://timely-cascaron-e38cca.netlify.app',
+  'http://localhost:5173'
+];
 
-// using express.json to parse the request body
+// Middleware to parse JSON request bodies
 app.use(express.json());
 
-// using cookie parser and cors
+// Middleware to parse cookies
 app.use(cookieParser());
-app.use(cors({origin:allowOrigins,credentials:true}));
+
+// Configure CORS
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      // Check if the origin is in the allowed list
+      if (allowOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Allow credentials (cookies, authorization headers)
+  })
+);
+
+// Handle preflight requests
+app.options('*', cors()); // Enable preflight for all routes
 
 // API Endpoints
-app.get('/',(req,res)=> res.send('Api is working'));
+app.get('/', (req, res) => res.send('API is working'));
 
-app.use('/api/auth', authRouter)
-app.use('/api/user', userRouter)
-app.use('/api/admin',adminRouter)
+// Routes
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
+app.use('/api/admin', adminRouter);
 
-// starting the server on the port
+// Start the server
 app.listen(port, () => console.log(`Server is running on port ${port}`));
