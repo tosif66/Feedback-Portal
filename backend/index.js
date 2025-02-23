@@ -16,13 +16,6 @@ const port = process.env.PORT || 3000;
 // Connect to MongoDB
 connectDB();
 
-// Define allowed origins for CORS
-const allowOrigins = [
-  'https://feedback-portal-1-69kw.onrender.com',
-  'https://feedback-portal-90bo.onrender.com',
-  'https://timely-cascaron-e38cca.netlify.app',
-  'http://localhost:5173'
-];
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
@@ -33,17 +26,7 @@ app.use(cookieParser());
 // Configure CORS
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-
-      // Check if the origin is in the allowed list
-      if (allowOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: process.env.CORS.split(","),
     credentials: true, // Allow credentials (cookies, authorization headers)
   })
 );
