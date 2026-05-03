@@ -53,7 +53,7 @@ export const manageUsers = async (req, res) => {
 // Fetch and Manage All Admins
 export const manageAdmins = async (req, res) => {
   try {
-    const admins = await userModel.find({ role: 'admin' });
+    const admins = await userModel.find({ role: 'admin' }).select('-password');
     res.status(200).json({ success: true, admins });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

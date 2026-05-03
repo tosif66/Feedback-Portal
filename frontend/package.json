@@ -7,8 +7,7 @@
     "start": "vite",
     "dev": "vite",
     "build": "npm install && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "serve": "vite preview"
   },
   "dependencies": {
     "@iconscout/react-unicons": "^2.2.1",

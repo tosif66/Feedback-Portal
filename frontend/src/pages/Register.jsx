@@ -7,6 +7,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 
 
+
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -69,7 +70,8 @@ const Register = () => {
   
   
   return (
-    <div className="flex items-center justify-center min-h-screen px-2 bg-gradient-to-br from-blue-200 to-purple-400 relative">
+    <div className="flex flex-col items-center justify-center 
+      min-h-screen px-6 bg-gradient-to-br from-blue-200 to-purple-400 relative">
   <ToastContainer />
   <img
     src={assets.dclogo}
@@ -91,8 +93,8 @@ const Register = () => {
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Full Name
         </label>
-        <div className="flex items-center gap-2 px-2 py-1 rounded-md border border-gray-300">
-          <img src={assets.person_icon} alt="person icon" className="w-4 h-4" />
+        <div className="flex items-center gap-3 px-2 py-2 rounded-md border border-gray-300">
+          <img src={assets.person_icon} alt="person icon" className="w-5 h-5" />
           <input
             className="bg-white outline-none w-full text-gray-800 text-sm"
             type="text"
@@ -110,8 +112,8 @@ const Register = () => {
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Email
         </label>
-        <div className="flex items-center gap-2 px-2 py-1 rounded-md border border-gray-300">
-          <img src={assets.mail_icon} alt="email icon" className="w-4 h-4" />
+        <div className="flex items-center gap-2 px-2 py-2 rounded-md border border-gray-300">
+          <img src={assets.mail_icon} alt="email icon" className="w-5 h-5" />
           <input
             className="bg-white outline-none w-full text-gray-800 text-sm"
             type="email"
@@ -129,8 +131,8 @@ const Register = () => {
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Password
         </label>
-        <div className="flex items-center gap-2 px-2 py-1 rounded-md border border-gray-300">
-          <img src={assets.lock_icon} alt="lock icon" className="w-4 h-4" />
+        <div className="flex items-center gap-2 px-2 py-2 rounded-md border border-gray-300">
+          <img src={assets.lock_icon} alt="lock icon" className="w-5 h-5" />
           <input
             className="bg-transparent outline-none w-full text-gray-800 text-sm"
             type="password"
@@ -148,8 +150,8 @@ const Register = () => {
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Confirm Password
         </label>
-        <div className="flex items-center gap-2 px-2 py-1 rounded-md border border-gray-300">
-          <img src={assets.lock_icon} alt="lock icon" className="w-4 h-4" />
+        <div className="flex items-center gap-2 px-2 py-2 rounded-md border border-gray-300">
+          <img src={assets.lock_icon} alt="lock icon" className="w-5 h-5" />
           <input
             className="bg-transparent outline-none w-full text-gray-800 text-sm"
             type="password"
